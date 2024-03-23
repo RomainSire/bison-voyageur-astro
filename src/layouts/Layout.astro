@@ -4,6 +4,7 @@ interface Props {
 }
 
 const { title } = Astro.props;
+const headerColor = "purple";
 ---
 
 <!doctype html>
@@ -19,13 +20,13 @@ const { title } = Astro.props;
 	<body>
 		<nav>
 			<a href="/">Home</a>
-			<a href="/about">About</a>
-			<a href="/blog">Blog</a>
+			<a href="/about/">About</a>
+			<a href="/blog/">Blog</a>
 		</nav>
 		<slot />
 	</body>
 </html>
-<style is:global>
+<style is:global define:vars={{headerColor}}>
 	:root {
 		--accent: 136, 58, 234;
 		--accent-light: 224, 204, 250;
@@ -59,6 +60,6 @@ const { title } = Astro.props;
 		line-height: 1;
 		text-align: center;
 		margin-bottom: 1em;
-		color: #fff;
+		color: var(--headerColor);
 	}
 </style>
