@@ -23,5 +23,12 @@
 			"dom",
 			"dom.iterable"
 		],
+		/* Aliases: */
+		"baseUrl": ".",
+		"paths": {
+			"@*": [
+				"src/*"
+			],
+		}
 	}
 }
