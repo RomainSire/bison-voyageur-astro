@@ -1,6 +1,8 @@
 ---
 import Footer from '@components/Footer.astro';
 import Header from '@components/Header.astro';
+import { ViewTransitions } from 'astro:transitions';
+import { fade } from 'astro:transitions';
 
 interface Props {
 	title: string;
@@ -19,8 +21,9 @@ const headerColor = 'purple';
 		<link rel='icon' type='image/svg+xml' href='/favicon.svg' />
 		<meta name='generator' content={Astro.generator} />
 		<title>{title}</title>
+		<ViewTransitions />
 	</head>
-	<body>
+	<body transition:animate={fade({ duration: '1s' })}>
 		<Header />
 		<h1>{title}</h1>
 		<slot />
@@ -28,39 +31,39 @@ const headerColor = 'purple';
 		<script>
 			import '@scripts/menu.ts';
 		</script>
+		<style is:global define:vars={{ headerColor }}>
+			html {
+				font-family: system-ui, sans-serif;
+				background: #9e9fa3;
+				background-size: 224px;
+			}
+			code {
+				font-family:
+					Menlo,
+					Monaco,
+					Lucida Console,
+					Liberation Mono,
+					DejaVu Sans Mono,
+					Bitstream Vera Sans Mono,
+					Courier New,
+					monospace;
+			}
+			h1 {
+				font-size: 4rem;
+				font-weight: 700;
+				line-height: 1;
+				text-align: center;
+				margin-bottom: 1em;
+				color: var(--headerColor);
+			}
+
+			html.dark {
+				background-color: #0d0950;
+				color: #fff;
+			}
+			.dark .nav-links a {
+				color: #fff;
+			}
+		</style>
 	</body>
 </html>
-<style is:global define:vars={{ headerColor }}>
-	html {
-		font-family: system-ui, sans-serif;
-		background: #9e9fa3;
-		background-size: 224px;
-	}
-	code {
-		font-family:
-			Menlo,
-			Monaco,
-			Lucida Console,
-			Liberation Mono,
-			DejaVu Sans Mono,
-			Bitstream Vera Sans Mono,
-			Courier New,
-			monospace;
-	}
-	h1 {
-		font-size: 4rem;
-		font-weight: 700;
-		line-height: 1;
-		text-align: center;
-		margin-bottom: 1em;
-		color: var(--headerColor);
-	}
-
-	html.dark {
-		background-color: #0d0950;
-		color: #fff;
-	}
-	.dark .nav-links a {
-		color: #fff;
-	}
-</style>
